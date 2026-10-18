@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "github_pat_FAKE0123456789EXAMPLE0123456789"
+      }
+    }
+  }
+}

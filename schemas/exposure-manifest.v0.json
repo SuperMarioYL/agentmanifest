@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/SuperMarioYL/agentmanifest/schemas/exposure-manifest.v0.json",
+  "title": "ExposureManifest v0",
+  "description": "Versioned, locally signable, archivable exposure inventory for coding-agent CLIs, third-party skills and MCP servers. Design invariant: a manifest never contains plaintext credentials — keys appear only as sha256 fingerprints.",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "host_fingerprint", "tools"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "v0" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "host_fingerprint": {
+      "type": "string",
+      "pattern": "^host_[0-9a-f]{16}$",
+      "description": "Non-reversible tag derived from the hostname."
+    },
+    "signature": {
+      "type": "string",
+      "description": "Reserved for local ed25519 signing (roadmap m3); empty in v0."
+    },
+    "tools": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/tool" }
+    }
+  },
+  "definitions": {
+    "kind": { "enum": ["cli", "skill", "mcp_server"] },
+    "dataClass": { "enum": ["prompts", "code", "env", "files"] },
+    "keyFingerprint": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{16}$"
+    },
+    "tool": {
+      "type": "object",
+      "required": ["name", "kind", "install_path"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" },
+        "kind": { "$ref": "#/definitions/kind" },
+        "install_path": { "type": "string", "minLength": 1 },
+        "credentials": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/credential" }
+        },
+        "reachability": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/reachability" }
+        },
+        "declared_egress": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/declaredEgress" }
+        },
+        "observed_egress": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/observedEgress" }
+        },
+        "content_surface": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/contentSurface" }
+        }
+      }
+    },
+    "credential": {
+      "type": "object",
+      "required": ["provider", "key_fingerprint", "source_file"],
+      "additionalProperties": false,
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "key_fingerprint": { "$ref": "#/definitions/keyFingerprint" },
+        "key_hint": {
+          "type": "string",
+          "description": "Masked display form, e.g. sk-ant-a…8f2c."
+        },
+        "source_file": { "type": "string", "minLength": 1 }
+      }
+    },
+    "reachability": {
+      "type": "object",
+      "required": ["key_fingerprint", "provider", "api_endpoints"],
+      "additionalProperties": false,
+      "properties": {
+        "key_fingerprint": { "$ref": "#/definitions/keyFingerprint" },
+        "provider": { "type": "string", "minLength": 1 },
+        "api_endpoints": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "auth_domain": { "type": "string" }
+      }
+    },
+    "declaredEgress": {
+      "type": "object",
+      "required": ["domain", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "domain": { "type": "string", "minLength": 1 },
+        "purpose": { "type": "string" },
+        "source": { "type": "string", "minLength": 1 }
+      }
+    },
+    "observedEgress": {
+      "type": "object",
+      "required": ["domain", "evidence_source"],
+      "additionalProperties": false,
+      "properties": {
+        "domain": { "type": "string", "minLength": 1 },
+        "evidence_source": { "type": "string", "minLength": 1 }
+      }
+    },
+    "contentSurface": {
+      "type": "object",
+      "required": ["data_class"],
+      "additionalProperties": false,
+      "properties": {
+        "data_class": { "$ref": "#/definitions/dataClass" },
+        "destinations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

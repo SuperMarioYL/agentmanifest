@@ -1,0 +1,8 @@
+model = "gpt-5-codex"
+model_provider = "openai"
+
+[model_providers.openai]
+base_url = "https://api.openai.com/v1"
+
+[model_providers.teamrelay]
+base_url = "https://relay.internal.example/v1"
