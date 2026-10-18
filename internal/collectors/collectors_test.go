@@ -11,6 +11,7 @@ import (
 	"github.com/SuperMarioYL/agentmanifest/internal/manifest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	gojsonschema "github.com/xeipuuv/gojsonschema"
 )
 
 // fixtureRoot is the shipped offline fixture: a fixture HOME plus a fixture
@@ -249,8 +250,63 @@ func TestScanHandlesMissingPathsSilently(t *testing.T) {
 	assert.Empty(t, m.Tools)
 }
 
-func TestDisplayPathMasksHome(t *testing.T) {
-	home := string(os.PathSeparator) + filepath.Join("Users", "dev")
-	got := displayPath(home, filepath.Join(home, ".claude", "settings.json"))
-	assert.True(t, strings.HasPrefix(got, "~/.claude/"), "got %q", got)
+func TestDisplayPathMasksScanScope(t *testing.T) {
+	sep := string(os.PathSeparator)
+	home := sep + filepath.Join("Users", "dev")
+	project := sep + filepath.Join("srv", "demo")
+	s := &scanner{opts: Options{Home: home, Project: project}}
+
+	assert.True(t, strings.HasPrefix(
+		s.displayPath(filepath.Join(home, ".claude", "settings.json")), "~/.claude/"),
+		"home-prefixed paths must mask as ~")
+	assert.Equal(t, filepath.Join("<project>", ".mcp.json"),
+		s.displayPath(filepath.Join(project, ".mcp.json")),
+		"project-rooted paths must mask as <project>/…")
+	other := sep + filepath.Join("opt", "thing.json")
+	assert.Equal(t, other, s.displayPath(other), "paths outside the scan scope pass through")
+
+	// Demo-style layout: the scan home lives under the project directory;
+	// home paths must still win the mask.
+	nested := &scanner{opts: Options{Home: filepath.Join(project, "home"), Project: project}}
+	assert.True(t, strings.HasPrefix(
+		nested.displayPath(filepath.Join(project, "home", ".claude", "settings.json")), "~/.claude/"),
+		"home mask must take precedence over the project mask")
+}
+
+func TestOpenAICompatibleKeyEmitsSchemaValidJSON(t *testing.T) {
+	// A bare, entropy-passing sk-… key that matches no specific vendor maps
+	// to the openai-compatible fallback, whose endpoints are unknown from the
+	// key alone. The reachability row must still serialize api_endpoints as
+	// [] (not null) so the emitted JSON conforms to
+	// schemas/exposure-manifest.v0.json, which requires an array.
+	m, err := Run(Options{
+		Home:    filepath.Join(fixtureRoot, "home"),
+		Project: fixtureRoot,
+		Env: []string{
+			// Fake, vendor-shaped placeholder; entropy passes the fallback gate.
+			"DEEPSEEK_API_KEY=sk-Qk7vX2mN9pR4tW8zY3aB6cD1eF0gH5jL",
+			"PATH=/usr/bin:/bin",
+		},
+	})
+	require.NoError(t, err)
+
+	envTool := findTool(t, m, "host-environment", manifest.KindCLI)
+	require.Len(t, envTool.Credentials, 1)
+	require.Len(t, envTool.Reachability, 1)
+	row := envTool.Reachability[0]
+	assert.Equal(t, "openai-compatible", row.Provider)
+	assert.NotNil(t, row.APIEndpoints, "api_endpoints must not be nil in the emitted JSON")
+	assert.Empty(t, row.APIEndpoints, "unknown endpoints serialize as an empty array")
+
+	jsonBytes, err := m.MarshalJSONBytes()
+	require.NoError(t, err)
+	schemaBytes, err := os.ReadFile(filepath.Join("..", "..", "schemas", "exposure-manifest.v0.json"))
+	require.NoError(t, err)
+	result, err := gojsonschema.Validate(
+		gojsonschema.NewBytesLoader(schemaBytes),
+		gojsonschema.NewBytesLoader(jsonBytes),
+	)
+	require.NoError(t, err)
+	assert.True(t, result.Valid(),
+		"emitted JSON must validate against schemas/exposure-manifest.v0.json: %v", result.Errors())
 }

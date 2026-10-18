@@ -22,7 +22,7 @@ func (s *scanner) collectOpenCode() {
 	globalConfig := filepath.Join(s.opts.Home, ".config", "opencode", "opencode.json")
 	if content, ok := readCap(globalConfig, maxFileBytes); ok {
 		found = true
-		src := displayPath(s.opts.Home, globalConfig)
+		src := s.displayPath(globalConfig)
 		s.scanJSONConfig(&t, src, content)
 		s.collectOpenCodeMCP(globalConfig, content)
 	}
@@ -30,7 +30,7 @@ func (s *scanner) collectOpenCode() {
 	projectConfig := filepath.Join(s.opts.Project, "opencode.json")
 	if content, ok := readCap(projectConfig, maxFileBytes); ok {
 		found = true
-		src := displayPath(s.opts.Home, projectConfig)
+		src := s.displayPath(projectConfig)
 		s.scanJSONConfig(&t, src, content)
 		s.collectOpenCodeMCP(projectConfig, content)
 	}
@@ -48,7 +48,7 @@ func (s *scanner) collectOpenCode() {
 			if files > maxFilesPerDir {
 				return filepath.SkipAll
 			}
-			src := displayPath(s.opts.Home, path)
+			src := s.displayPath(path)
 			switch {
 			case strings.HasSuffix(path, ".json"):
 				// Auth storage and other JSON state: fingerprint any key shapes.
@@ -99,7 +99,7 @@ func (s *scanner) collectClaude() {
 	settings := filepath.Join(s.opts.Home, ".claude", "settings.json")
 	if content, ok := readCap(settings, maxFileBytes); ok {
 		found = true
-		addCredentials(&t, displayPath(s.opts.Home, settings), content)
+		addCredentials(&t, s.displayPath(settings), content)
 	}
 
 	globalConfig := filepath.Join(s.opts.Home, ".claude.json")
@@ -136,7 +136,7 @@ func (s *scanner) collectClaudeMCPMap(path, content string) {
 // mcpToolFromEntry builds an mcp_server tool from one MCP config entry
 // ({command/args/env} for local servers, {url} for remote ones).
 func (s *scanner) mcpToolFromEntry(name, configPath string, entry map[string]any) {
-	installPath := displayPath(s.opts.Home, configPath)
+	installPath := s.displayPath(configPath)
 	t := manifest.Tool{Name: name, Kind: manifest.KindMCPServer, InstallPath: installPath}
 	encoded, _ := json.Marshal(entry)
 	addCredentials(&t, installPath, string(encoded))
@@ -154,7 +154,7 @@ func (s *scanner) collectCodex() {
 	configTOML := filepath.Join(s.opts.Home, ".codex", "config.toml")
 	if content, ok := readCap(configTOML, maxFileBytes); ok {
 		found = true
-		src := displayPath(s.opts.Home, configTOML)
+		src := s.displayPath(configTOML)
 		addCredentials(&t, src, content)
 		addDeclaredEgress(&t, src, content)
 	}
@@ -162,7 +162,7 @@ func (s *scanner) collectCodex() {
 	authJSON := filepath.Join(s.opts.Home, ".codex", "auth.json")
 	if content, ok := readCap(authJSON, maxFileBytes); ok {
 		found = true
-		addCredentials(&t, displayPath(s.opts.Home, authJSON), content)
+		addCredentials(&t, s.displayPath(authJSON), content)
 	}
 
 	if found {

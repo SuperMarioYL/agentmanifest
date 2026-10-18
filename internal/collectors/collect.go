@@ -224,10 +224,18 @@ func finalize(t *manifest.Tool) {
 		if !ok {
 			continue
 		}
+		endpoints := p.APIEndpoints
+		if endpoints == nil {
+			// The provider maps (key shape recognized) but no endpoint is
+			// known from the key alone — e.g. the openai-compatible fallback.
+			// The schema requires api_endpoints to be an array, so emit an
+			// empty one rather than null.
+			endpoints = []string{}
+		}
 		t.Reachability = append(t.Reachability, manifest.Reachability{
 			KeyFingerprint: c.KeyFingerprint,
 			Provider:       c.Provider,
-			APIEndpoints:   p.APIEndpoints,
+			APIEndpoints:   endpoints,
 			AuthDomain:     p.AuthDomain,
 		})
 	}
@@ -294,11 +302,18 @@ func HostFingerprint(hostname string) string {
 	return "host_" + hex.EncodeToString(sum[:])[:16]
 }
 
-// displayPath renders absolute paths under home with a ~ prefix so archived
-// manifests do not leak the local username.
-func displayPath(home, path string) string {
-	if home != "" && strings.HasPrefix(path, home+string(filepath.Separator)) {
-		return "~" + path[len(home):]
+// displayPath renders paths inside the scan scope with placeholders so
+// archived manifests do not leak the local username or the absolute location
+// of the scanned project: home-prefixed paths become ~/… and project-rooted
+// paths become <project>/…, exactly mirroring the labels collectSkills uses.
+// The home check runs first: a fixture-style project may sit under the scan
+// home, and those paths must keep masking as ~.
+func (s *scanner) displayPath(path string) string {
+	if s.opts.Home != "" && strings.HasPrefix(path, s.opts.Home+string(filepath.Separator)) {
+		return "~" + path[len(s.opts.Home):]
+	}
+	if s.opts.Project != "" && strings.HasPrefix(path, s.opts.Project+string(filepath.Separator)) {
+		return "<project>" + path[len(s.opts.Project):]
 	}
 	return path
 }

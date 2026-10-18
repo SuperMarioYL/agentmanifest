@@ -1,4 +1,4 @@
-{"version": 2, "width": 100, "height": 30, "timestamp": 1792366267, "duration": 7.2, "command": "agentmanifest scan", "title": "agentmanifest — offline fixture scan demo", "env": {"SHELL": "/bin/zsh", "TERM": "xterm-256color"}}
+{"version": 2, "width": 100, "height": 30, "timestamp": 1792367700, "duration": 7.2, "command": "agentmanifest scan", "title": "agentmanifest — offline fixture scan demo", "env": {"SHELL": "/bin/zsh", "TERM": "xterm-256color"}}
 [0.0, "o", "$ ./agentmanifest version\n"]
 [0.45, "o", "agentmanifest 0.1.0 (manifest schema v0)\n"]
 [0.57, "o", "\n"]
@@ -9,7 +9,7 @@
 [1.73, "o", "\n"]
 [2.08, "o", "$ head -36 .demo-out/exposure-manifest.yaml\n"]
 [2.53, "o", "schema_version: v0\n"]
-[2.65, "o", "generated_at: 2026-10-18T23:31:07.515456Z\n"]
+[2.65, "o", "generated_at: 2026-10-18T23:55:00.060578Z\n"]
 [2.77, "o", "host_fingerprint: host_d22ee280bd58feb6\n"]
 [2.89, "o", "tools:\n"]
 [3.01, "o", "    - name: claude-code\n"]

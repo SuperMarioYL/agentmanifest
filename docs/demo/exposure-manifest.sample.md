@@ -29,7 +29,7 @@ wrote .demo-out/exposure-manifest.json
 
 ```yaml
 schema_version: v0
-generated_at: 2026-10-18T23:31:24.806677Z
+generated_at: 2026-10-18T23:54:30.998538Z
 host_fingerprint: host_d22ee280bd58feb6
 tools:
     - name: claude-code
@@ -123,7 +123,7 @@ tools:
         - provider: anthropic
           key_fingerprint: sha256:557fa01c9a18683d
           key_hint: sk-ant-a…MPLE
-          source_file: <project>/testdata/fixtures/opencode.json
+          source_file: <project>/opencode.json
         - provider: openai
           key_fingerprint: sha256:e5f3e09ccc55504e
           key_hint: sk-proj-…MPLE
@@ -167,12 +167,12 @@ tools:
             - openrouter.ai
     - name: claude-code:brave-search
       kind: mcp_server
-      install_path: <project>/testdata/fixtures/.mcp.json
+      install_path: <project>/.mcp.json
       credentials:
         - provider: github
           key_fingerprint: sha256:7fb167a31ca240ec
           key_hint: github_p…6789
-          source_file: <project>/testdata/fixtures/.mcp.json
+          source_file: <project>/.mcp.json
       reachability:
         - key_fingerprint: sha256:7fb167a31ca240ec
           provider: github
@@ -200,7 +200,7 @@ tools:
         - data_class: env
     - name: opencode:fetch
       kind: mcp_server
-      install_path: <project>/testdata/fixtures/opencode.json
+      install_path: <project>/opencode.json
       content_surface:
         - data_class: prompts
         - data_class: env
