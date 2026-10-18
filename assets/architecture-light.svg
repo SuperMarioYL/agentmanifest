@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="440" viewBox="0 0 880 440" role="img" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9">
+  <title>scan 数据流:collectors → keyring detector → manifest builder</title>
+  <style>
+    text { font-family: -apple-system,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif; }
+    .a1 { animation: drift 6s ease-in-out infinite alternate; }
+    .a2 { animation: drift 8s ease-in-out infinite alternate-reverse; }
+    .a3 { animation: drift 9.5s ease-in-out infinite alternate; }
+    .flow { stroke-dasharray: 7 9; animation: dash 1.8s linear infinite; }
+    .glow { animation: glow 3.2s ease-in-out infinite alternate; }
+    .pulse { animation: slide 4.5s ease-in-out infinite; }
+    .orbit { transform-box: fill-box; transform-origin: center; animation: sway 9s ease-in-out infinite alternate; }
+    .orbit2 { transform-box: fill-box; transform-origin: center; animation: sway 11s ease-in-out infinite alternate-reverse; }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(7px, -9px); } }
+    @keyframes dash { to { stroke-dashoffset: -64; } }
+    @keyframes glow { from { opacity: .5; } to { opacity: 1; } }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(0px); } }
+    @keyframes sway { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .a1,.a2,.a3,.flow,.glow,.pulse,.orbit,.orbit2 { animation: none; }
+    }
+</style>
+  <defs>
+    <linearGradient id="glight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#31833d"/>
+      <stop offset="1" stop-color="#5f7b56"/>
+    </linearGradient>
+    <marker id="arrlight" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#557b6f"/>
+    </marker>
+  </defs>
+<defs><pattern id="gridf9fefa" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0 H0 V44" fill="none" stroke="#cbf7d2" stroke-width="1" opacity="0.55"/></pattern></defs><rect width="880" height="440" fill="#f9fefa"/><rect width="880" height="440" fill="url(#gridf9fefa)"/>
+<text x="44" y="52" font-size="20" font-weight="700" fill="#132a1e">scan 数据流 — 单二进制 · 四个内部阶段 · 零常驻进程</text>
+<rect x="36" y="84" width="220" height="264" rx="14" fill="#f7fef8" stroke="#31833d" stroke-width="1.6"/>
+<text x="52" y="118" font-size="17" font-weight="700" fill="#132a1e">collectors</text>
+<text x="52" y="140" font-size="13" fill="#557b6f">只读遍历配置路径</text>
+<rect x="52" y="158" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="146.0" y="174.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">opencode.json + 数据目录</text>
+<rect x="52" y="188" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="146.0" y="204.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">~/.claude · settings.json</text>
+<rect x="52" y="218" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="146.0" y="234.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">~/.codex · config/auth</text>
+<rect x="52" y="248" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="146.0" y="264.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">SKILL.md skill 目录</text>
+<rect x="52" y="278" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="146.0" y="294.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">.mcp.json / .claude.json</text>
+<rect x="52" y="308" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="146.0" y="324.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">进程环境变量</text>
+<rect x="330" y="84" width="220" height="264" rx="14" fill="#f7fef8" stroke="#3b8069" stroke-width="1.6"/>
+<text x="346" y="118" font-size="17" font-weight="700" fill="#132a1e">keyring detector</text>
+<text x="346" y="140" font-size="13" fill="#557b6f">密钥形态 → 厂商 → endpoint</text>
+<rect x="346" y="158" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="440.0" y="174.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">厂商前缀映射</text>
+<rect x="346" y="188" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="440.0" y="204.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">正则 + 熵校验</text>
+<rect x="346" y="218" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="440.0" y="234.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">SHA-256 指纹化</text>
+<rect x="346" y="248" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="440.0" y="264.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">明文即用即弃</text>
+<rect x="346" y="278" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="440.0" y="294.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">不发探测包</text>
+<rect x="346" y="308" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="440.0" y="324.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">不落明文</text>
+<rect x="624" y="84" width="220" height="264" rx="14" fill="#f7fef8" stroke="#5f7b56" stroke-width="1.6"/>
+<text x="640" y="118" font-size="17" font-weight="700" fill="#132a1e">manifest builder</text>
+<text x="640" y="140" font-size="13" fill="#557b6f">ExposureManifest schema v0</text>
+<rect x="640" y="158" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="734.0" y="174.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">四层暴露模型</text>
+<rect x="640" y="188" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="734.0" y="204.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">host_fingerprint</text>
+<rect x="640" y="218" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="734.0" y="234.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">yaml + json 双输出</text>
+<rect x="640" y="248" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="734.0" y="264.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">schema 校验</text>
+<rect x="640" y="278" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="734.0" y="294.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">可签名 · 可归档</text>
+<rect x="640" y="308" width="188" height="24" rx="6" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="734.0" y="324.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">清单不含明文</text>
+<line x1="258" y1="216" x2="324" y2="216" stroke="#557b6f" stroke-width="2" class="flow" marker-end="url(#arrlight)"/>
+<line x1="552" y1="216" x2="618" y2="216" stroke="#557b6f" stroke-width="2" class="flow" marker-end="url(#arrlight)"/>
+<rect x="36" y="376" width="808" height="40" rx="10" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1"/>
+<text x="440" y="401" text-anchor="middle" font-size="15" fill="#557b6f">collectors 只读文件系统 · 可达性由静态映射推导 · 默认零网络外联(信创信任前提)</text>
+</svg>

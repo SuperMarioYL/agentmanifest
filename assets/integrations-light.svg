@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="440" viewBox="0 0 880 440" role="img" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9">
+  <title>扫描覆盖面:CLI 配置、skill、MCP、环境变量 → exposure-manifest</title>
+  <style>
+    text { font-family: -apple-system,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif; }
+    .a1 { animation: drift 6s ease-in-out infinite alternate; }
+    .a2 { animation: drift 8s ease-in-out infinite alternate-reverse; }
+    .a3 { animation: drift 9.5s ease-in-out infinite alternate; }
+    .flow { stroke-dasharray: 7 9; animation: dash 1.8s linear infinite; }
+    .glow { animation: glow 3.2s ease-in-out infinite alternate; }
+    .pulse { animation: slide 4.5s ease-in-out infinite; }
+    .orbit { transform-box: fill-box; transform-origin: center; animation: sway 9s ease-in-out infinite alternate; }
+    .orbit2 { transform-box: fill-box; transform-origin: center; animation: sway 11s ease-in-out infinite alternate-reverse; }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(7px, -9px); } }
+    @keyframes dash { to { stroke-dashoffset: -64; } }
+    @keyframes glow { from { opacity: .5; } to { opacity: 1; } }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(0px); } }
+    @keyframes sway { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .a1,.a2,.a3,.flow,.glow,.pulse,.orbit,.orbit2 { animation: none; }
+    }
+</style>
+  <defs>
+    <linearGradient id="glight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#31833d"/>
+      <stop offset="1" stop-color="#5f7b56"/>
+    </linearGradient>
+    <marker id="arrlight" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#557b6f"/>
+    </marker>
+  </defs>
+<defs><pattern id="gridf9fefa" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0 H0 V44" fill="none" stroke="#cbf7d2" stroke-width="1" opacity="0.55"/></pattern></defs><rect width="880" height="440" fill="#f9fefa"/><rect width="880" height="440" fill="url(#gridf9fefa)"/>
+<text x="44" y="52" font-size="20" font-weight="700" fill="#132a1e">扫描覆盖面与产物</text>
+<rect x="596" y="32" width="248" height="32" rx="8" fill="#f3fdf5" stroke="#cbf7d2" stroke-width="1.2"/><text x="720.0" y="52.68" text-anchor="middle" font-size="13" font-weight="500" fill="#557b6f">schemas/exposure-manifest.v0.json</text>
+<g class="orbit">
+<line x1="440" y1="232" x2="440.0" y2="136.0" stroke="#cbf7d2" stroke-width="1"/>
+<rect x="378.0" y="119.0" width="124" height="34" rx="10" fill="#f7fef8" stroke="#31833d" stroke-width="1.2"/><text x="440.0" y="141.4" text-anchor="middle" font-size="15" font-weight="600" fill="#132a1e">opencode</text>
+<line x1="440" y1="232" x2="571.6358613752348" y2="280.0" stroke="#cbf7d2" stroke-width="1"/>
+<rect x="509.63586137523475" y="263.0" width="124" height="34" rx="10" fill="#f7fef8" stroke="#31833d" stroke-width="1.2"/><text x="571.6358613752348" y="285.4" text-anchor="middle" font-size="15" font-weight="600" fill="#132a1e">Claude Code</text>
+<line x1="440" y1="232" x2="308.3641386247653" y2="280.0" stroke="#cbf7d2" stroke-width="1"/>
+<rect x="246.3641386247653" y="263.0" width="124" height="34" rx="10" fill="#f7fef8" stroke="#31833d" stroke-width="1.2"/><text x="308.3641386247653" y="285.4" text-anchor="middle" font-size="15" font-weight="600" fill="#132a1e">codex</text>
+</g>
+<g class="orbit2">
+<line x1="440" y1="232" x2="556.0" y2="102.0961894323342" stroke="#cbf7d2" stroke-width="1" stroke-dasharray="3 5"/>
+<rect x="482.0" y="85.0961894323342" width="148" height="34" rx="10" fill="#f3fdf5" stroke="#3b8069" stroke-width="1.2"/><text x="556.0" y="107.1361894323342" text-anchor="middle" font-size="14" font-weight="500" fill="#132a1e">SKILL.md skills</text>
+<line x1="440" y1="232" x2="556.0" y2="361.9038105676658" stroke="#cbf7d2" stroke-width="1" stroke-dasharray="3 5"/>
+<rect x="482.0" y="344.9038105676658" width="148" height="34" rx="10" fill="#f3fdf5" stroke="#3b8069" stroke-width="1.2"/><text x="556.0" y="366.9438105676658" text-anchor="middle" font-size="14" font-weight="500" fill="#132a1e">MCP 配置</text>
+<line x1="440" y1="232" x2="208.0" y2="232.00000000000003" stroke="#cbf7d2" stroke-width="1" stroke-dasharray="3 5"/>
+<rect x="134.0" y="215.00000000000003" width="148" height="34" rx="10" fill="#f3fdf5" stroke="#3b8069" stroke-width="1.2"/><text x="208.0" y="237.04000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="#132a1e">环境变量</text>
+</g>
+<circle cx="440" cy="232" r="158" fill="none" stroke="#cbf7d2" stroke-width="1" stroke-dasharray="2 6"/>
+<circle cx="440" cy="232" r="102" fill="none" stroke="#cbf7d2" stroke-width="1" stroke-dasharray="2 6"/>
+<rect x="345" y="190" width="190" height="84" rx="14" fill="#f7fef8" stroke="#31833d" stroke-width="1.8" class="glow"/>
+<text x="440" y="220" text-anchor="middle" font-size="16" font-weight="700" fill="#132a1e">exposure-manifest</text>
+<text x="440" y="242" text-anchor="middle" font-size="13" fill="#557b6f">.yaml + .json · schema v0</text>
+<text x="440" y="262" text-anchor="middle" font-size="13" fill="#31833d">密钥仅指纹 · 零外联</text>
+<text x="44" y="416" font-size="14" fill="#557b6f">清单本身会被归档 — 因此它永远不含明文密钥,不能成为新的泄露源。</text>
+</svg>

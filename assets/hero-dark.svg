@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="300" viewBox="0 0 880 300" role="img" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9">
+  <title>AgentManifest — 离线盘点 Coding Agent 工具链暴露面的清单原件</title>
+  <style>
+    text { font-family: -apple-system,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif; }
+    .a1 { animation: drift 6s ease-in-out infinite alternate; }
+    .a2 { animation: drift 8s ease-in-out infinite alternate-reverse; }
+    .a3 { animation: drift 9.5s ease-in-out infinite alternate; }
+    .flow { stroke-dasharray: 7 9; animation: dash 1.8s linear infinite; }
+    .glow { animation: glow 3.2s ease-in-out infinite alternate; }
+    .pulse { animation: slide 4.5s ease-in-out infinite; }
+    .orbit { transform-box: fill-box; transform-origin: center; animation: sway 9s ease-in-out infinite alternate; }
+    .orbit2 { transform-box: fill-box; transform-origin: center; animation: sway 11s ease-in-out infinite alternate-reverse; }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(7px, -9px); } }
+    @keyframes dash { to { stroke-dashoffset: -64; } }
+    @keyframes glow { from { opacity: .5; } to { opacity: 1; } }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(0px); } }
+    @keyframes sway { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .a1,.a2,.a3,.flow,.glow,.pulse,.orbit,.orbit2 { animation: none; }
+    }
+</style>
+  <defs>
+    <linearGradient id="gdark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#56e66a"/>
+      <stop offset="1" stop-color="#bef6ac"/>
+    </linearGradient>
+    <marker id="arrdark" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#95b9ac"/>
+    </marker>
+  </defs>
+<defs><pattern id="grid050c0d" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0 H0 V44" fill="none" stroke="#173c21" stroke-width="1" opacity="0.55"/></pattern></defs><rect width="880" height="300" fill="#050c0d"/><rect width="880" height="300" fill="url(#grid050c0d)"/>
+<circle cx="90" cy="60" r="3" fill="#56e66a" opacity="0.8" class="a1"/>
+<circle cx="180" cy="40" r="2" fill="#6ae7bd" opacity="0.8" class="a2"/>
+<circle cx="300" cy="70" r="2.5" fill="#bef6ac" opacity="0.8" class="a3"/>
+<circle cx="60" cy="160" r="2" fill="#6ae7bd" opacity="0.8" class="a2"/>
+<circle cx="140" cy="230" r="2.5" fill="#56e66a" opacity="0.8" class="a3"/>
+<circle cx="330" cy="180" r="2" fill="#bef6ac" opacity="0.8" class="a1"/>
+<circle cx="760" cy="50" r="2.5" fill="#56e66a" opacity="0.8" class="a2"/>
+<circle cx="820" cy="120" r="2" fill="#6ae7bd" opacity="0.8" class="a3"/>
+<circle cx="790" cy="250" r="3" fill="#bef6ac" opacity="0.8" class="a1"/>
+<circle cx="700" cy="40" r="2" fill="#bef6ac" opacity="0.8" class="a3"/>
+<circle cx="830" cy="190" r="2" fill="#56e66a" opacity="0.8" class="a2"/>
+<line x1="300" y1="70" x2="618" y2="150" stroke="#173c21" stroke-width="1" opacity="0.9"/>
+<line x1="330" y1="180" x2="618" y2="150" stroke="#173c21" stroke-width="1" opacity="0.9"/>
+<line x1="760" y1="50" x2="618" y2="150" stroke="#173c21" stroke-width="1" opacity="0.9"/>
+<line x1="790" y1="250" x2="618" y2="150" stroke="#173c21" stroke-width="1" opacity="0.9"/>
+<text x="48" y="76" font-size="13" letter-spacing="3" fill="#95b9ac">AGENT TOOLCHAIN EXPOSURE MANIFEST</text>
+<text x="44" y="132" font-size="46" font-weight="700" fill="url(#gdark)">AgentManifest</text>
+<text x="48" y="172" font-size="19" fill="#f2fdee">离线盘点 Coding Agent 的密钥指纹、可达厂商与外联域名</text>
+<text x="48" y="200" font-size="15" fill="#95b9ac">opencode · Claude Code · codex · 第三方 Skill · MCP 配置 · 环境变量</text>
+<rect x="48" y="222" width="132" height="34" rx="10" fill="#0c1718" stroke="#56e66a" stroke-width="1.2"/><text x="114.0" y="244.4" text-anchor="middle" font-size="15" font-weight="600" fill="#56e66a">默认零外联</text>
+<rect x="192" y="222" width="160" height="34" rx="10" fill="#0c1718" stroke="#173c21" stroke-width="1.2"/><text x="272.0" y="244.4" text-anchor="middle" font-size="15" font-weight="500" fill="#95b9ac">密钥仅 SHA-256 指纹</text>
+<rect x="364" y="222" width="148" height="34" rx="10" fill="#0c1718" stroke="#173c21" stroke-width="1.2"/><text x="438.0" y="244.4" text-anchor="middle" font-size="15" font-weight="500" fill="#95b9ac">可归档 schema v0</text>
+<g class="glow"><rect x="560" y="78" width="250" height="148" rx="14" fill="#0c1718" stroke="#56e66a" stroke-width="1.6"/></g>
+<text x="580" y="108" font-size="14" font-weight="600" fill="#f2fdee">exposure-manifest.yaml</text>
+<rect x="580" y="124" width="8" height="8" rx="2" fill="#56e66a"/>
+<text x="596" y="133" font-size="14" fill="#95b9ac">持有什么</text>
+<rect x="710" y="124" width="80" height="8" rx="4" fill="#173c21"/>
+<rect x="580" y="149" width="8" height="8" rx="2" fill="#6ae7bd"/>
+<text x="596" y="158" font-size="14" fill="#95b9ac">能到哪</text>
+<rect x="710" y="149" width="80" height="8" rx="4" fill="#173c21"/>
+<rect x="580" y="174" width="8" height="8" rx="2" fill="#bef6ac"/>
+<text x="596" y="183" font-size="14" fill="#95b9ac">配置联系谁</text>
+<rect x="710" y="174" width="80" height="8" rx="4" fill="#173c21"/>
+<rect x="580" y="199" width="8" height="8" rx="2" fill="#56e66a"/>
+<text x="596" y="208" font-size="14" fill="#95b9ac">可能送出什么</text>
+<rect x="710" y="199" width="80" height="8" rx="4" fill="#173c21"/>
+</svg>

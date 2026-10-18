@@ -1,0 +1,38 @@
+{
+  "mode": "auto",
+  "id": "56e66a-6ae7bd-bef6ac-e8c27d262ed9",
+  "identity": "https://github.com/supermarioyl/agentmanifest",
+  "primary": "#56e66a",
+  "secondary": "#6ae7bd",
+  "highlight": "#bef6ac",
+  "dark": {
+    "bg": "#050c0d",
+    "panel": "#0c1718",
+    "code": "#0a1714",
+    "ink": "#f2fdee",
+    "muted": "#95b9ac",
+    "line": "#173c21",
+    "primary": "#56e66a",
+    "secondary": "#6ae7bd",
+    "highlight": "#bef6ac",
+    "accent": "#56e66a",
+    "buttonStart": "#32863e",
+    "buttonEnd": "#3c836c",
+    "buttonText": "#ffffff"
+  },
+  "light": {
+    "bg": "#f9fefa",
+    "panel": "#f7fef8",
+    "code": "#f3fdf5",
+    "ink": "#132a1e",
+    "muted": "#557b6f",
+    "line": "#cbf7d2",
+    "primary": "#31833d",
+    "secondary": "#3b8069",
+    "highlight": "#5f7b56",
+    "accent": "#31833d",
+    "buttonStart": "#32863e",
+    "buttonEnd": "#3c836c",
+    "buttonText": "#ffffff"
+  }
+}

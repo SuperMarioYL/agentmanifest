@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="280" viewBox="0 0 880 280" role="img" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9">
+  <title>一次 scan 的四个阶段:遍历 → 识别 → 指纹化 → 映射可达性</title>
+  <style>
+    text { font-family: -apple-system,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif; }
+    .a1 { animation: drift 6s ease-in-out infinite alternate; }
+    .a2 { animation: drift 8s ease-in-out infinite alternate-reverse; }
+    .a3 { animation: drift 9.5s ease-in-out infinite alternate; }
+    .flow { stroke-dasharray: 7 9; animation: dash 1.8s linear infinite; }
+    .glow { animation: glow 3.2s ease-in-out infinite alternate; }
+    .pulse { animation: slide 5s ease-in-out infinite; }
+    .orbit { transform-box: fill-box; transform-origin: center; animation: sway 9s ease-in-out infinite alternate; }
+    .orbit2 { transform-box: fill-box; transform-origin: center; animation: sway 11s ease-in-out infinite alternate-reverse; }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(7px, -9px); } }
+    @keyframes dash { to { stroke-dashoffset: -64; } }
+    @keyframes glow { from { opacity: .5; } to { opacity: 1; } }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(645px); } }
+    @keyframes sway { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .a1,.a2,.a3,.flow,.glow,.pulse,.orbit,.orbit2 { animation: none; }
+    }
+</style>
+  <defs>
+    <linearGradient id="gdark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#56e66a"/>
+      <stop offset="1" stop-color="#bef6ac"/>
+    </linearGradient>
+    <marker id="arrdark" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#95b9ac"/>
+    </marker>
+  </defs>
+<defs><pattern id="grid050c0d" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0 H0 V44" fill="none" stroke="#173c21" stroke-width="1" opacity="0.55"/></pattern></defs><rect width="880" height="270" fill="#050c0d"/><rect width="880" height="270" fill="url(#grid050c0d)"/>
+<text x="44" y="52" font-size="20" font-weight="700" fill="#f2fdee">一次 scan 的四个阶段</text>
+<text x="836" y="52" text-anchor="end" font-size="14" fill="#95b9ac">fixtures 离线可复现 · 默认 &lt;60s</text>
+<line x1="105" y1="150" x2="750" y2="150" stroke="#173c21" stroke-width="2"/>
+<circle cy="150" cx="105" r="6" fill="#56e66a" class="pulse"/>
+<circle cy="150" cx="105" r="5" fill="#bef6ac" class="pulse" style="animation-delay:-1.7s"/>
+<circle cx="105" cy="150" r="27" fill="#0c1718" stroke="#56e66a" stroke-width="1.8"/>
+<text x="105" y="157" text-anchor="middle" font-size="18" font-weight="700" fill="#f2fdee">01</text>
+<text x="105" y="212" text-anchor="middle" font-size="17" font-weight="600" fill="#f2fdee">遍历已知配置路径</text>
+<text x="105" y="234" text-anchor="middle" font-size="13" fill="#95b9ac">opencode · claude · codex</text>
+<circle cx="320" cy="150" r="27" fill="#0c1718" stroke="#6ae7bd" stroke-width="1.8"/>
+<text x="320" y="157" text-anchor="middle" font-size="18" font-weight="700" fill="#f2fdee">02</text>
+<text x="320" y="212" text-anchor="middle" font-size="17" font-weight="600" fill="#f2fdee">识别密钥形态</text>
+<text x="320" y="234" text-anchor="middle" font-size="13" fill="#95b9ac">厂商前缀 + 正则 + 熵</text>
+<circle cx="535" cy="150" r="27" fill="#0c1718" stroke="#56e66a" stroke-width="1.8"/>
+<text x="535" y="157" text-anchor="middle" font-size="18" font-weight="700" fill="#f2fdee">03</text>
+<text x="535" y="212" text-anchor="middle" font-size="17" font-weight="600" fill="#f2fdee">SHA-256 指纹化</text>
+<text x="535" y="234" text-anchor="middle" font-size="13" fill="#95b9ac">明文即用即弃,不落盘</text>
+<circle cx="750" cy="150" r="27" fill="#0c1718" stroke="#6ae7bd" stroke-width="1.8"/>
+<text x="750" y="157" text-anchor="middle" font-size="18" font-weight="700" fill="#f2fdee">04</text>
+<text x="750" y="212" text-anchor="middle" font-size="17" font-weight="600" fill="#f2fdee">静态映射可达性</text>
+<text x="750" y="234" text-anchor="middle" font-size="13" fill="#95b9ac">密钥 → 厂商 → endpoint</text>
+<text x="440" y="268" text-anchor="middle" font-size="14" fill="#95b9ac">产出 exposure-manifest.yaml / .json — 持有什么 → 能到哪 → 配置联系谁 → 可能送出什么</text>
+</svg>
