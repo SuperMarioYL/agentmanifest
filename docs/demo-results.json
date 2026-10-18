@@ -1,0 +1,46 @@
+{
+  "product": "agentmanifest",
+  "version": "0.1.0",
+  "manifest_schema": "v0",
+  "recorded_at": "2026-10-19",
+  "environment": "macOS (darwin/arm64), Go 1.24",
+  "input": {
+    "description": "Shipped offline fixtures: a fixture HOME with opencode / Claude Code / codex configs and two third-party skills, plus a fixture project with opencode.json and .mcp.json. Every credential in the fixtures is a fake, vendor-shaped placeholder.",
+    "paths": [
+      "testdata/fixtures/home",
+      "testdata/fixtures/opencode.json",
+      "testdata/fixtures/.mcp.json",
+      "testdata/fixtures/.claude/skills/release-notes",
+      "testdata/fixtures/home/.claude/skills/web-reporter"
+    ]
+  },
+  "commands": [
+    "go build -o agentmanifest ./cmd/agentmanifest",
+    "HOME=$PWD/testdata/fixtures/home GROQ_API_KEY=gsk_... agentmanifest scan --project $PWD/testdata/fixtures --out .demo-out",
+    "head -36 .demo-out/exposure-manifest.yaml"
+  ],
+  "results": {
+    "tools": 10,
+    "tools_by_kind": { "cli": 4, "mcp_server": 4, "skill": 2 },
+    "credentials_fingerprinted": 8,
+    "key_to_provider_reachability_rows": 8,
+    "declared_egress_domains": 4,
+    "observed_egress_domains": 2,
+    "plaintext_keys_in_manifest": 0,
+    "wall_time_seconds": "<1"
+  },
+  "artifacts": [
+    "docs/demo/exposure-manifest.sample.md",
+    "assets/demo.cast",
+    "assets/demo.tape",
+    "scripts/make_demo_cast.py"
+  ],
+  "limitations": [
+    "m1 scope: only `scan` writes a manifest; report / scope / diff are roadmap stubs (m2 / m3) and exit with a notice.",
+    "Tool versions are not detected: collectors never execute scanned binaries.",
+    "codex config.toml is scanned line-based (regex), not TOML-parsed.",
+    "observed_egress is read from existing local logs only and filtered to known provider / declared hosts; no active network probing exists anywhere in the codebase.",
+    "content_surface is a static best-effort statement by tool kind, not measured traffic.",
+    "Optional local-LLM skill summarization (--llm via Ollama, qwen2.5-7b-instruct) is on the roadmap; it is not implemented in this release and was not verified."
+  ]
+}

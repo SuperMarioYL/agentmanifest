@@ -169,6 +169,6 @@ func summarize(m manifest.Manifest) string {
 		observed += len(t.ObservedEgress)
 	}
 	return fmt.Sprintf(
-		"%d tools, %d credentials (sha256 fingerprints only), %d reachable providers, %d declared egress domains, %d observed",
+		"%d tools, %d credentials (sha256 fingerprints only), %d key-to-provider reachability rows, %d declared egress domains, %d observed",
 		len(m.Tools), creds, reach, declared, observed)
 }
