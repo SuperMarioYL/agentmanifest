@@ -17,3 +17,5 @@ dist/
 # scan output should not be committed — the manifest is an archive artifact
 /exposure-manifest.yaml
 /exposure-manifest.json
+.test_report.md
+.eval_verdict.md
