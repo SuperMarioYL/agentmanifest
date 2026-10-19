@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9" role="img">
+<defs>
+<filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+  <feGaussianBlur stdDeviation="6" result="b"/>
+  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+  <feGaussianBlur stdDeviation="14"/>
+</filter>
+<linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a"/>
+  <stop offset="1" stop-color="#6ae7bd"/>
+</linearGradient>
+<linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a" stop-opacity="0.16"/>
+  <stop offset="1" stop-color="#6ae7bd" stop-opacity="0.05"/>
+</linearGradient>
+</defs>
+<path d="M800 470 Q 505.2 410 300 190" stroke="url(#line)" stroke-width="1.6" fill="none" opacity="0.6"/>
+<circle cx="650" cy="386" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="525" cy="316" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="410" cy="251.6" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<path d="M800 470 Q 1001.8 256.6 1290 200" stroke="url(#line)" stroke-width="1.6" fill="none" opacity="0.6"/>
+<circle cx="947" cy="389" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="1069.5" cy="321.5" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="1182.2" cy="259.4" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<path d="M800 470 Q 537.2 647.8 220 640" stroke="url(#line)" stroke-width="1.6" fill="none" opacity="0.6"/>
+<circle cx="626" cy="521" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="481" cy="563.5" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="347.59999999999997" cy="602.6" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<path d="M800 470 Q 1095.4 480.2 1330 660" stroke="url(#line)" stroke-width="1.6" fill="none" opacity="0.6"/>
+<circle cx="959" cy="527" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="1091.5" cy="574.5" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="1213.4" cy="618.2" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<path d="M800 470 Q 745.6 300 800 130" stroke="url(#line)" stroke-width="1.6" fill="none" opacity="0.6"/>
+<circle cx="800" cy="368" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="800" cy="283" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="800" cy="204.8" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<path d="M800 470 Q 852.8 635 800 800" stroke="url(#line)" stroke-width="1.6" fill="none" opacity="0.6"/>
+<circle cx="800" cy="569" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="800" cy="651.5" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<circle cx="800" cy="727.4000000000001" r="3.4" fill="#5f7b56" opacity="0.9"/>
+<g filter="url(#glow)"><rect x="208" y="156" width="184" height="68" rx="16" fill="#ffffff" stroke="#31833d" stroke-width="1.4"/></g>
+<text x="300" y="186" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="17" fill="#132a1e" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">claude-code</text>
+<text x="300" y="208" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">~/.claude</text>
+<g filter="url(#glow)"><rect x="1198" y="166" width="184" height="68" rx="16" fill="#ffffff" stroke="#31833d" stroke-width="1.4"/></g>
+<text x="1290" y="196" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="17" fill="#132a1e" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">codex</text>
+<text x="1290" y="218" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">~/.codex</text>
+<g filter="url(#glow)"><rect x="128" y="606" width="184" height="68" rx="16" fill="#ffffff" stroke="#31833d" stroke-width="1.4"/></g>
+<text x="220" y="636" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="17" fill="#132a1e" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">opencode</text>
+<text x="220" y="658" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">~/.config/opencode</text>
+<g filter="url(#glow)"><rect x="1238" y="626" width="184" height="68" rx="16" fill="#ffffff" stroke="#31833d" stroke-width="1.4"/></g>
+<text x="1330" y="656" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="17" fill="#132a1e" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">skills</text>
+<text x="1330" y="678" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">SKILL.md</text>
+<g filter="url(#glow)"><rect x="708" y="96" width="184" height="68" rx="16" fill="#ffffff" stroke="#31833d" stroke-width="1.4"/></g>
+<text x="800" y="126" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="17" fill="#132a1e" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">mcp</text>
+<text x="800" y="148" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">.mcp.json</text>
+<g filter="url(#glow)"><rect x="708" y="766" width="184" height="68" rx="16" fill="#ffffff" stroke="#31833d" stroke-width="1.4"/></g>
+<text x="800" y="796" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="17" fill="#132a1e" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">env</text>
+<text x="800" y="818" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">GROQ_API_KEY …</text>
+<circle cx="800" cy="470" r="240" fill="#31833d" opacity="0.03"/>
+<circle cx="800" cy="470" r="185" fill="#31833d" opacity="0.04"/>
+<circle cx="800" cy="470" r="135" fill="#31833d" opacity="0.05"/>
+<g filter="url(#glow)"><rect x="630" y="426" width="340" height="88" rx="20" fill="#ffffff" stroke="#31833d" stroke-width="2"/></g>
+<text x="800" y="464" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="21" fill="#132a1e" font-weight="700" text-anchor="middle" letter-spacing="0" opacity="1">exposure-manifest</text>
+<text x="800" y="492" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">schema v0 · yaml + json</text>
+</svg>

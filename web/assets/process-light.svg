@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="0 0 1000 440" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9" role="img">
+<defs>
+<filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+  <feGaussianBlur stdDeviation="6" result="b"/>
+  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+  <feGaussianBlur stdDeviation="14"/>
+</filter>
+<linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a"/>
+  <stop offset="1" stop-color="#6ae7bd"/>
+</linearGradient>
+<linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a" stop-opacity="0.16"/>
+  <stop offset="1" stop-color="#6ae7bd" stop-opacity="0.05"/>
+</linearGradient>
+</defs>
+<text x="32" y="52" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="19" fill="#132a1e" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">agentmanifest scan — one read-only pass</text>
+<text x="968" y="52" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#557b6f" font-weight="400" text-anchor="end" letter-spacing="0" opacity="1">no network packets · &lt;1 s</text>
+<rect x="32" y="96" width="214" height="190" rx="14" fill="#ffffff" stroke="#cbf7d2" stroke-width="1"/>
+<text x="50" y="130" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#31833d" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">01</text>
+<text x="50" y="158" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="15.5" fill="#132a1e" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">walk config paths</text>
+<text x="50" y="192" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">opencode · ~/.claude</text>
+<text x="50" y="216" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">~/.codex · .mcp.json</text>
+<text x="50" y="240" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">SKILL.md · env</text>
+<g stroke="#31833d" stroke-width="1.6" fill="none" opacity="0.85"><line x1="250" y1="191" x2="263" y2="191"/><path d="M263 187 L270 191 L263 195" fill="#31833d" stroke="none"/></g>
+<rect x="274" y="96" width="214" height="190" rx="14" fill="#ffffff" stroke="#cbf7d2" stroke-width="1"/>
+<text x="292" y="130" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#31833d" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">02</text>
+<text x="292" y="158" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="15.5" fill="#132a1e" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">recognize key shapes</text>
+<text x="292" y="192" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">vendor prefix + regex</text>
+<text x="292" y="216" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">+ entropy check</text>
+<g stroke="#31833d" stroke-width="1.6" fill="none" opacity="0.85"><line x1="492" y1="191" x2="505" y2="191"/><path d="M505 187 L512 191 L505 195" fill="#31833d" stroke="none"/></g>
+<rect x="516" y="96" width="214" height="190" rx="14" fill="#ffffff" stroke="#cbf7d2" stroke-width="1"/>
+<text x="534" y="130" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#31833d" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">03</text>
+<text x="534" y="158" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="15.5" fill="#132a1e" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">sha256 fingerprint</text>
+<text x="534" y="192" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">sha256:9d362ee4…</text>
+<text x="534" y="216" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">plaintext dropped</text>
+<g stroke="#31833d" stroke-width="1.6" fill="none" opacity="0.85"><line x1="734" y1="191" x2="747" y2="191"/><path d="M747 187 L754 191 L747 195" fill="#31833d" stroke="none"/></g>
+<rect x="758" y="96" width="214" height="190" rx="14" fill="#ffffff" stroke="#cbf7d2" stroke-width="1"/>
+<text x="776" y="130" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#31833d" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">04</text>
+<text x="776" y="158" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="15.5" fill="#132a1e" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">derive reachability</text>
+<text x="776" y="192" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">key shape → vendor</text>
+<text x="776" y="216" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#557b6f" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">→ endpoint · no probes</text>
+<g stroke="#31833d" stroke-width="1.6" fill="none" opacity="0.85"><line x1="500" y1="292" x2="500" y2="317"/><path d="M496 317 L500 324 L504 317" fill="#31833d" stroke="none"/></g>
+<rect x="150" y="330" width="700" height="64" rx="12" fill="#ffffff" stroke="#cbf7d2" stroke-width="1"/>
+<text x="500" y="358" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#132a1e" font-weight="600" text-anchor="middle" letter-spacing="0" opacity="1">exposure-manifest.yaml  +  exposure-manifest.json</text>
+<text x="500" y="380" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#557b6f" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">schema v0 · draft-07 validated · host_fingerprint included</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="540" viewBox="0 0 1000 540" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9" role="img">
+<defs>
+<filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+  <feGaussianBlur stdDeviation="6" result="b"/>
+  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+  <feGaussianBlur stdDeviation="14"/>
+</filter>
+<linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a"/>
+  <stop offset="1" stop-color="#6ae7bd"/>
+</linearGradient>
+<linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a" stop-opacity="0.16"/>
+  <stop offset="1" stop-color="#6ae7bd" stop-opacity="0.05"/>
+</linearGradient>
+</defs>
+<rect x="60" y="40" width="880" height="460" rx="18" fill="#0c1718" stroke="#173c21" stroke-width="1"/>
+<text x="92" y="84" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="19" fill="#f2fdee" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">exposure-manifest.yaml</text>
+<text x="908" y="84" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#95b9ac" font-weight="400" text-anchor="end" letter-spacing="0" opacity="1">schema_version: v0</text>
+<rect x="84" y="108" width="832" height="74" rx="10" fill="url(#band)" stroke="#173c21"/>
+<rect x="84" y="108" width="4" height="74" rx="2" fill="#56e66a"/>
+<text x="108" y="134" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="15.5" fill="#f2fdee" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">credentials</text>
+<text x="229.6" y="134" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">— what it holds</text>
+<text x="892" y="134" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#56e66a" font-weight="600" text-anchor="end" letter-spacing="0" opacity="1">0 plaintext fields</text>
+<text x="108" y="158" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">provider: anthropic</text><text x="268.5" y="158" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#56e66a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">key_fingerprint: sha256:9d362ee48b6717c8</text>
+<text x="108" y="178" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">key_hint: sk-ant-a…MPLE</text><text x="298.5" y="178" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">source_file: ~/.claude/settings.json</text>
+<rect x="84" y="196" width="832" height="74" rx="10" fill="url(#band)" stroke="#173c21"/>
+<rect x="84" y="196" width="4" height="74" rx="2" fill="#56e66a"/>
+<text x="108" y="222" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="15.5" fill="#f2fdee" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">reachability</text>
+<text x="239.2" y="222" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">— where it reaches</text>
+<text x="892" y="222" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#56e66a" font-weight="600" text-anchor="end" letter-spacing="0" opacity="1">derived · never pinged</text>
+<text x="108" y="246" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">api_endpoints: https://api.anthropic.com/v1</text><text x="448.5" y="246" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">auth_domain: console.anthropic.com</text>
+<rect x="84" y="284" width="832" height="74" rx="10" fill="url(#band)" stroke="#173c21"/>
+<rect x="84" y="284" width="4" height="74" rx="2" fill="#56e66a"/>
+<text x="108" y="310" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="15.5" fill="#f2fdee" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">declared_egress / observed_egress</text>
+<text x="440.8" y="310" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">— whom its config contacts</text>
+<text x="892" y="310" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#56e66a" font-weight="600" text-anchor="end" letter-spacing="0" opacity="1">config + local logs</text>
+<text x="108" y="334" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">api.openai.com ← ~/.codex/config.toml</text><text x="403.5" y="334" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">api.anthropic.com ← log/app.log</text>
+<rect x="84" y="372" width="832" height="74" rx="10" fill="url(#band)" stroke="#173c21"/>
+<rect x="84" y="372" width="4" height="74" rx="2" fill="#56e66a"/>
+<text x="108" y="398" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="15.5" fill="#f2fdee" font-weight="700" text-anchor="start" letter-spacing="0" opacity="1">content_surface</text>
+<text x="268" y="398" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">— what may leave</text>
+<text x="892" y="398" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#56e66a" font-weight="600" text-anchor="end" letter-spacing="0" opacity="1">static best-effort</text>
+<text x="108" y="422" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">cli → prompts / code / env</text><text x="321" y="422" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">mcp_server → prompts / env</text><text x="534" y="422" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">skill → prompts</text>
+<text x="92" y="482" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">host_fingerprint: host_d22ee280bd58feb6</text>
+<text x="908" y="482" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="12" fill="#95b9ac" font-weight="400" text-anchor="end" letter-spacing="0" opacity="1">non-reversible host id</text>
+</svg>

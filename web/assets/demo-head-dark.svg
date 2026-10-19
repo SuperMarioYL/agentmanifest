@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" data-palette="56e66a-6ae7bd-bef6ac-e8c27d262ed9" role="img">
+<defs>
+<filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+  <feGaussianBlur stdDeviation="6" result="b"/>
+  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+  <feGaussianBlur stdDeviation="14"/>
+</filter>
+<linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a"/>
+  <stop offset="1" stop-color="#6ae7bd"/>
+</linearGradient>
+<linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#56e66a" stop-opacity="0.16"/>
+  <stop offset="1" stop-color="#6ae7bd" stop-opacity="0.05"/>
+</linearGradient>
+</defs>
+<rect x="20" y="20" width="720" height="260" rx="16" fill="#0c1718" stroke="#173c21" stroke-width="1"/>
+<text x="48" y="60" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#f2fdee" font-weight="600" text-anchor="start" letter-spacing="0" opacity="1">exposure-manifest.yaml — first lines</text>
+<text x="48" y="96" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">schema_version:</text>
+<text x="214" y="96" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#f2fdee" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">v0</text>
+<text x="48" y="122" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">host_fingerprint:</text>
+<text x="214" y="122" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#f2fdee" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">host_d22ee280bd58feb6</text>
+<text x="48" y="148" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">- provider:</text>
+<text x="214" y="148" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#f2fdee" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">anthropic</text>
+<text x="48" y="174" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">  key_fingerprint:</text>
+<text x="214" y="174" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#56e66a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">sha256:9d362ee48b6717c8</text>
+<text x="48" y="200" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">  key_hint:</text>
+<text x="214" y="200" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#56e66a" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">sk-ant-a…MPLE</text>
+<text x="48" y="226" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">  source_file:</text>
+<text x="214" y="226" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#f2fdee" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">~/.claude/settings.json</text>
+<text x="48" y="252" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#95b9ac" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">  api_endpoints:</text>
+<text x="214" y="252" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" fill="#f2fdee" font-weight="400" text-anchor="start" letter-spacing="0" opacity="1">https://api.anthropic.com/v1</text>
+<rect x="470" y="200" width="242" height="52" rx="12" fill="rgba(86,230,106,0.34)" stroke="#56e66a" stroke-opacity="0.5"/>
+<text x="591" y="224" font-family="'Space Grotesk', -apple-system, 'PingFang SC', 'Segoe UI', sans-serif" font-size="13.5" fill="#f2fdee" font-weight="700" text-anchor="middle" letter-spacing="0" opacity="1">no plaintext field</text>
+<text x="591" y="242" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" fill="#95b9ac" font-weight="400" text-anchor="middle" letter-spacing="0" opacity="1">endpoints derived, never pinged</text>
+</svg>

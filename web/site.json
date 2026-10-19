@@ -1,4 +1,317 @@
 {
+  "schema": 3,
+  "name": "agentmanifest",
+  "github": "https://github.com/SuperMarioYL/agentmanifest",
+  "host": "agentmanifest.lei6393.com",
   "palette": "auto",
-  "github": "https://github.com/SuperMarioYL/agentmanifest"
+  "lang": {
+    "primary": "zh",
+    "toggle": true
+  },
+  "meta": {
+    "visual_profile": "neon-particle",
+    "content_version": "0.1.0",
+    "demo_source": "docs/demo-results.json",
+    "source_version": "v0.1.0"
+  },
+  "hero": {
+    "eyebrow": {
+      "zh": "离线扫描 · 只读 · 默认零外联 · 仅 SHA-256 指纹",
+      "en": "Offline scan · read-only · zero egress by default · sha256 fingerprints only"
+    },
+    "headline": {
+      "zh": "别再全网 rotate all keys,\n先出一份暴露清单。",
+      "en": "Don't blind-rotate every key.\nEmit the exposure inventory first."
+    },
+    "sub": {
+      "zh": "AgentManifest 离线扫描本机每个 Coding Agent CLI、第三方 Skill 与 MCP 配置,产出一份可归档的暴露清单:谁持有哪把密钥指纹、能到达哪家厂商、配置了哪些外联域名、可能外发什么用户内容。等保与信创准入审计、应急范围圈定,一份清单说完。",
+      "en": "AgentManifest scans every Coding Agent CLI, third-party skill, and MCP config on the machine — offline — and produces an archivable exposure inventory: which key fingerprints each tool holds, which model providers it can reach, which egress domains its config declares, and which user content may leave. For incident scoping and admission review, one document says it all."
+    },
+    "href": "#quickstart",
+    "command": "agentmanifest scan",
+    "cta": {
+      "zh": "跑一次真实扫描",
+      "en": "Run a real scan"
+    },
+    "ctaGithub": {
+      "zh": "在 GitHub 查看",
+      "en": "View on GitHub"
+    }
+  },
+  "scene": {
+    "kind": "neon-graph",
+    "caption": {
+      "zh": "示意图展示扫描器与它读取的配置面;实际输出见下方演示。",
+      "en": "An illustrative scene of the scanner and the config surfaces it reads; recorded output appears below."
+    },
+    "fallback": "/assets/scene-dark.svg",
+    "fallbackLight": "/assets/scene-light.svg"
+  },
+  "advantages": [
+    {
+      "title": {
+        "zh": "清单永不落明文",
+        "en": "The manifest never holds plaintext"
+      },
+      "body": {
+        "zh": "密钥只以 sha256: 指纹加掩码提示呈现,扫描结束后明文即弃。清单会被归档、转发、提交评审,所以它不能成为新的泄露源。",
+        "en": "Keys appear only as sha256: fingerprints with a masked hint; plaintext is dropped as soon as it is hashed. The inventory gets archived, forwarded, and filed for review, so it must not become a new leak source."
+      },
+      "chips": ["› 0 个明文字段", "› sha256: 指纹 + 掩码提示"]
+    },
+    {
+      "title": {
+        "zh": "默认零网络外联",
+        "en": "Zero network egress by default"
+      },
+      "body": {
+        "zh": "可达性由「密钥形态 → 厂商 → API endpoint」静态映射推导,不发任何探测包;扫描全程只读文件系统。单二进制,拷进气隙环境即用。",
+        "en": "Reachability is derived from a static key-shape → vendor → API endpoint mapping; no probe packet is ever sent, and the scan only reads the filesystem. One binary you can copy into an air-gapped network."
+      },
+      "chips": ["› 不发探测包", "› 只读扫描", "› 单二进制"]
+    },
+    {
+      "title": {
+        "zh": "四层暴露模型",
+        "en": "A four-layer exposure model"
+      },
+      "body": {
+        "zh": "每个工具按 持有什么(credentials)→ 能到哪(reachability)→ 配置联系谁(declared / observed egress)→ 可能送出什么(content_surface)展开,产出 schema v0 的 yaml + json 双格式文档,JSON Schema draft-07 机器可校验。",
+        "en": "Every tool unfolds through four layers — credentials, reachability, declared / observed egress, content_surface — into a schema-v0 document emitted as both yaml and json, machine-checkable against JSON Schema draft-07."
+      },
+      "chips": ["› schema v0", "› yaml + json 双输出"]
+    }
+  ],
+  "story": {
+    "intro": {
+      "title": {
+        "zh": "下一次供应链事件,\n先答「够得着哪几把钥匙」",
+        "en": "When the next supply-chain incident hits,\nanswer which keys it could reach"
+      },
+      "body": {
+        "zh": "opencode 被拖库之后,社区流传的应对是「rotate all keys to be safe」——全网轮换,因为没有人能答出「我装的这把 CLI 到底够得着我的哪几把钥匙」。第三方 Skill 是另一半缺口:静默更新默认开启,哪怕审计过一次,答案下个月就过期。手工 grep 配置每次事故重来一遍,装前静态扫描在事故时刻恰好过期——都不能沉淀成一份可归档、可评审、可引用的清单原件。AgentManifest 补的就是这份原件。",
+        "en": "When opencode was breached, the circulating response was \"rotate keys to be safe\" — rotate everything, because nobody could answer \"which of my keys could this installed CLI actually reach.\" Third-party skills are the other half of the gap: silent updates are on by default, so even a one-time audit expires within a month. Manual config greps restart from zero at every incident, and install-time scanners are stale exactly when the incident lands — none of it accumulates into an archivable, reviewable, citable document. AgentManifest builds that document."
+      }
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "一次扫描:四个阶段,零常驻进程",
+          "en": "One scan: four stages, no resident process"
+        },
+        "body": {
+          "zh": "collectors 只读遍历已知配置路径(opencode、~/.claude、~/.codex、SKILL.md skill 目录、.mcp.json、环境变量);keyring detector 用厂商前缀 + 正则 + 熵校验识别密钥并立即指纹化;manifest builder 组装 schema v0 文档并做结构校验。全程不发网络包,在笔记本上不到 1 秒。",
+          "en": "Collectors read-only walk the known config paths (opencode, ~/.claude, ~/.codex, SKILL.md skill directories, .mcp.json, environment variables); the keyring detector recognizes credential shapes (vendor prefix + regex + entropy) and fingerprints them immediately; the manifest builder assembles and validates the schema-v0 document. No network packets anywhere, under a second on a laptop."
+        },
+        "image": {
+          "light": "/assets/process-light.svg",
+          "dark": "/assets/process-dark.svg",
+          "alt": {
+            "zh": "一次 scan 的四个阶段:01 遍历已知配置路径,02 识别密钥形态,03 SHA-256 指纹化(明文即用即弃),04 静态映射可达性,产出 exposure-manifest.yaml/.json",
+            "en": "Four stages of one scan: 01 walk known config paths, 02 recognize credential shapes, 03 sha256 fingerprinting (plaintext dropped immediately), 04 derive reachability statically, emitting exposure-manifest.yaml/.json"
+          }
+        }
+      },
+      {
+        "title": {
+          "zh": "清单结构:每个工具四层展开",
+          "en": "Manifest structure: four layers per tool"
+        },
+        "body": {
+          "zh": "credentials 只含 provider、sha256: 指纹、掩码提示与来源文件;reachability 是静态推导的结论,这些地址没有被 ping 过;declared_egress 来自配置与 Skill 指令,observed_egress 只读本机既有日志并过滤到已知厂商;content_surface 按工具类别静态推断。host_fingerprint 不可逆,归档可追溯但不泄露机器名。",
+          "en": "credentials holds only the provider, the sha256: fingerprint, a masked hint and the source file; reachability is a static deduction — those addresses were never pinged; declared_egress comes from configs and skill instructions, observed_egress reads existing local logs filtered to known providers; content_surface is a static best-effort by tool kind. host_fingerprint is non-reversible: traceable across archives, without publishing the machine name."
+        },
+        "image": {
+          "light": "/assets/layers-light.svg",
+          "dark": "/assets/layers-dark.svg",
+          "alt": {
+            "zh": "exposure-manifest 四层模型:credentials(持有什么)、reachability(能到哪)、declared/observed egress(配置联系谁)、content_surface(可能送出什么)",
+            "en": "The four-layer exposure-manifest model: credentials (what it holds), reachability (where it reaches), declared/observed egress (whom its config contacts), content_surface (what may leave)"
+          }
+        }
+      },
+      {
+        "title": {
+          "zh": "识别面与边界:scan 只做这一件事",
+          "en": "Surface and scope: scan does one thing"
+        },
+        "body": {
+          "zh": "当前识别的密钥形态:Anthropic、OpenAI(含 sk-proj- 等变体)、OpenRouter、Google AIza、Groq、xAI、GitHub、GitLab、Hugging Face、Slack、NVIDIA,以及熵校验兜底的 OpenAI 兼容形态(可达性留空)。v0.1.0 只实现 scan;report / scope / diff 是路线图桩——命令存在,输出「属于路线图 m2/m3」提示并以退出码 2 结束,README 不提前兜售未实现的能力。",
+          "en": "Credential shapes recognized today: Anthropic, OpenAI (including sk-proj- variants), OpenRouter, Google AIza, Groq, xAI, GitHub, GitLab, Hugging Face, Slack, NVIDIA, plus an entropy-gated OpenAI-compatible fallback (reachability left empty). v0.1.0 implements scan only; report / scope / diff are roadmap stubs — the commands exist, print a roadmap notice, and exit with code 2. This site does not sell unimplemented capabilities."
+        },
+        "image": {
+          "light": "/assets/surface-light.svg",
+          "dark": "/assets/surface-dark.svg",
+          "alt": {
+            "zh": "扫描覆盖面:claude-code、codex、opencode 等 CLI,MCP 配置(.mcp.json / opencode.json),SKILL.md skill 目录,环境变量;以及 scan 之外的 report/scope/diff 路线图桩",
+            "en": "The scan surface: CLIs such as claude-code, codex and opencode, MCP configs (.mcp.json / opencode.json), SKILL.md skill directories, environment variables; and the report/scope/diff roadmap stubs beyond scan"
+          }
+        }
+      }
+    ],
+    "details": [
+      {
+        "title": {
+          "zh": "常用参数",
+          "en": "Common flags"
+        },
+        "body": {
+          "zh": "输出格式、归档目录与项目目录都可以显式指定;version 同时打印二进制与 manifest schema 版本。",
+          "en": "Output format, archive directory and project directory can all be given explicitly; version prints both the binary version and the manifest schema version."
+        },
+        "code": "agentmanifest scan -format yaml            # 只写 yaml\nagentmanifest scan -out ~/audit/2026-10    # 指定归档目录\nagentmanifest scan -project ~/work/api     # 指定项目目录\nagentmanifest version                      # 版本与 manifest schema 版本"
+      },
+      {
+        "title": {
+          "zh": "能力边界",
+          "en": "Known limits"
+        },
+        "body": {
+          "zh": "只读盘点:不执行被扫描的二进制,读不到工具版本号;不在沙箱里动态运行 Skill 观察行为。observed_egress 只读本机既有日志(opencode 数据目录)并过滤到已知厂商与已声明域名。content_surface 是静态 best-effort 推断,不是测得的流量。codex 的 config.toml 按行正则扫描,不是完整 TOML 解析。Windows 不在 v0.1 支持范围(macOS / Linux)。",
+          "en": "Read-only inventory: scanned binaries are never executed, so tool versions are not detected; skills are not run in a sandbox to observe behavior. observed_egress reads only existing local logs (the opencode data directory), filtered to known provider and declared hosts. content_surface is static best-effort inference, not measured traffic. codex config.toml is scanned line-by-line with regexes, not fully TOML-parsed. Windows is out of scope for v0.1 (macOS / Linux)."
+        }
+      },
+      {
+        "title": {
+          "zh": "气隙与信创环境",
+          "en": "Air-gapped and regulated environments"
+        },
+        "body": {
+          "zh": "release 提供单二进制,拷进内网即用;默认零外联是信创与气隙环境信任清单原件的前提——扫描器自己首先不外联。本地 LLM 摘要(--llm,经 Ollama 调 qwen2.5-7b-instruct,完全离线)在路线图上,本版本未实现、也未做运行验证;默认运行与任何模型无关。",
+          "en": "Releases ship a single binary you can copy into the intranet; zero egress by default is the precondition for trusting the inventory in air-gapped and regulated environments — the scanner itself must not phone home. Local LLM summarization (--llm via Ollama running qwen2.5-7b-instruct, fully offline) is on the roadmap — not implemented and not runtime-verified in this release; default runs are model-free."
+        }
+      }
+    ]
+  },
+  "demo": {
+    "title": {
+      "zh": "fixtures 上的真实运行",
+      "en": "A real run on the shipped fixtures"
+    },
+    "note": {
+      "zh": "以下命令与输出逐字来自仓库记录的一次真实运行(docs/demo-results.json 与 docs/demo/exposure-manifest.sample.md):对仓库自带离线 fixtures 扫描,所有密钥均为伪造的供应商格式占位符。生成的 generated_at 时间戳随运行时刻变化,其余内容可复现。",
+      "en": "Commands and outputs below are copied verbatim from the repo's recorded real run (docs/demo-results.json and docs/demo/exposure-manifest.sample.md): a scan of the shipped offline fixtures, where every credential is a fake vendor-shaped placeholder. The generated_at timestamp varies with the moment of the run; everything else reproduces."
+    },
+    "source": "https://github.com/SuperMarioYL/agentmanifest/blob/main/docs/demo-results.json",
+    "steps": [
+      {
+        "label": {
+          "zh": "扫描离线 fixtures",
+          "en": "Scan the offline fixtures"
+        },
+        "body": {
+          "zh": "对仓库自带的 fixtures(HOME 与 GROQ_API_KEY 均指向夹具)运行一次真实扫描:10 个工具(cli 4 / mcp_server 4 / skill 2)、8 把密钥指纹、8 条「密钥 → 厂商」可达行、4 个声明外联域名、2 个日志观测域名,笔记本上不到 1 秒,明文密钥 0 个。",
+          "en": "One real scan of the shipped fixtures (HOME and GROQ_API_KEY point at the fixtures): 10 tools (4 cli / 4 mcp_server / 2 skill), 8 key fingerprints, 8 key-to-provider reachability rows, 4 declared egress domains, 2 log-observed domains — under a second on a laptop, 0 plaintext keys."
+        },
+        "command": "HOME=$PWD/testdata/fixtures/home GROQ_API_KEY=gsk_... agentmanifest scan --project $PWD/testdata/fixtures --out .demo-out",
+        "output": "scanned host host_d22ee280bd58feb6: 10 tools, 8 credentials (sha256 fingerprints only), 8 key-to-provider reachability rows, 4 declared egress domains, 2 observed\nwrote .demo-out/exposure-manifest.yaml\nwrote .demo-out/exposure-manifest.json",
+        "image": "/assets/demo-scan-light.svg",
+        "imageDark": "/assets/demo-scan-dark.svg"
+      },
+      {
+        "label": {
+          "zh": "查看清单原件",
+          "en": "Read the inventory"
+        },
+        "body": {
+          "zh": "产出 schema v0 的 yaml + json 双格式清单。前 36 行:指纹、掩码提示与来源文件,可见可达端点均为静态推导,没有任何明文字段。",
+          "en": "The scan writes the schema-v0 inventory as both yaml and json. First 36 lines: fingerprints, masked hints and source files; the reachable endpoints shown are static deductions, and there is no plaintext field anywhere."
+        },
+        "command": "head -36 .demo-out/exposure-manifest.yaml",
+        "output": "schema_version: v0\ngenerated_at: 2026-10-18T23:54:30.998538Z\nhost_fingerprint: host_d22ee280bd58feb6\ntools:\n    - name: claude-code\n      kind: cli\n      install_path: ~/.claude\n      credentials:\n        - provider: anthropic\n          key_fingerprint: sha256:9d362ee48b6717c8\n          key_hint: sk-ant-a…MPLE\n          source_file: ~/.claude/settings.json\n      reachability:\n        - key_fingerprint: sha256:9d362ee48b6717c8\n          provider: anthropic\n          api_endpoints:\n            - https://api.anthropic.com/v1\n          auth_domain: console.anthropic.com\n      content_surface:\n        - data_class: prompts\n          destinations:\n            - api.anthropic.com\n        - data_class: code\n          destinations:\n            - api.anthropic.com\n        - data_class: env\n          destinations:\n            - api.anthropic.com\n    - name: codex\n      kind: cli\n      install_path: ~/.codex\n      credentials:\n        - provider: openai\n          key_fingerprint: sha256:8b0a57466f042713\n          key_hint: sk-None-…MPLE\n          source_file: ~/.codex/auth.json",
+        "image": "/assets/demo-head-light.svg",
+        "imageDark": "/assets/demo-head-dark.svg"
+      }
+    ]
+  },
+  "quickstart": {
+    "title": {
+      "zh": "跑第一次扫描",
+      "en": "Your first scan"
+    },
+    "body": {
+      "zh": "需要 Go 1.24(macOS / Linux),约 1 分钟。机器上没有这些 Agent 工具也没关系:仓库自带离线 fixtures,先看清单长什么样。",
+      "en": "Requires Go 1.24 (macOS / Linux), about a minute. No agent tooling installed? The repo ships offline fixtures so you can see what an inventory looks like first."
+    },
+    "steps": [
+      {
+        "title": {
+          "zh": "安装",
+          "en": "Install"
+        },
+        "code": "go install github.com/SuperMarioYL/agentmanifest/cmd/agentmanifest@latest\n# 或直接下载 release 单二进制,拷进内网即用(默认零外联,为气隙环境设计)\n# https://github.com/SuperMarioYL/agentmanifest/releases"
+      },
+      {
+        "title": {
+          "zh": "扫描本机",
+          "en": "Scan your machine"
+        },
+        "code": "agentmanifest scan                      # 扫当前用户 home + 当前项目,输出到当前目录"
+      },
+      {
+        "title": {
+          "zh": "没有装这些工具?先跑离线 fixtures",
+          "en": "No agent tooling? Run the offline fixtures first"
+        },
+        "code": "git clone https://github.com/SuperMarioYL/agentmanifest && cd agentmanifest\ngo build -o agentmanifest ./cmd/agentmanifest\nHOME=$PWD/testdata/fixtures/home GROQ_API_KEY=gsk_example \\\n  ./agentmanifest scan --project $PWD/testdata/fixtures --out .demo-out"
+      },
+      {
+        "title": {
+          "zh": "归档到审计目录",
+          "en": "Archive for audit"
+        },
+        "code": "agentmanifest scan -out ~/audit/2026-10    # 指定归档目录"
+      }
+    ]
+  },
+  "limitations": [
+    {
+      "zh": "v0.1.0 只实现了 scan。report / scope / diff 是路线图桩:命令存在,输出「属于路线图 m2/m3」提示并以退出码 2 结束——本站不提前兜售未实现的能力。",
+      "en": "v0.1.0 implements scan only. report / scope / diff are roadmap stubs: the commands exist, print a roadmap notice, and exit with code 2 — this site does not sell unimplemented capabilities."
+    },
+    {
+      "zh": "只读盘点:不执行被扫描的二进制,因此读不到工具版本号;不在沙箱里动态运行 Skill 观察行为。",
+      "en": "Read-only inventory: scanned binaries are never executed, so tool versions are not detected; skills are not run in a sandbox to observe behavior."
+    },
+    {
+      "zh": "observed_egress 只读本机既有日志(opencode 数据目录),并过滤到已知厂商与已声明域名——运行时流量捕获属于另一类工具(出口代理),本工具刻意不做。",
+      "en": "observed_egress reads only existing local logs (the opencode data directory), filtered to known provider and declared hosts — runtime traffic capture belongs to a different tool class (egress proxies) and is deliberately out of scope."
+    },
+    {
+      "zh": "content_surface 是静态 best-effort 推断,不是测得的流量。",
+      "en": "content_surface is static best-effort inference, not measured traffic."
+    },
+    {
+      "zh": "codex 的 config.toml 按行正则扫描,不是完整 TOML 解析。",
+      "en": "codex config.toml is scanned line-by-line with regexes, not fully TOML-parsed."
+    },
+    {
+      "zh": "本地 LLM 摘要(--llm,经 Ollama 调 qwen2.5-7b-instruct,完全离线)在路线图上,本版本未实现、也未做运行验证;默认运行与任何模型无关。",
+      "en": "Local LLM summarization (--llm via Ollama running qwen2.5-7b-instruct, fully offline) is on the roadmap — not implemented and not runtime-verified in this release; default runs are model-free."
+    },
+    {
+      "zh": "Windows 不在 v0.1 支持范围(macOS / Linux)。",
+      "en": "Windows is out of scope for v0.1 (macOS / Linux)."
+    }
+  ],
+  "cta": {
+    "headline": {
+      "zh": "下一次事件发生前,\n把清单备好。",
+      "en": "Have the inventory ready\nbefore the next incident."
+    },
+    "sub": {
+      "zh": "扫描器本体 MIT 开源,不设功能墙;等保与信创准入审计、应急范围圈定,一份清单说完。",
+      "en": "The scanner itself is MIT-licensed open source with no feature gates; for incident scoping and admission review, one document says it all."
+    },
+    "button": {
+      "zh": "在 GitHub 上开始",
+      "en": "Get started on GitHub"
+    }
+  },
+  "footer": {
+    "tag": {
+      "zh": "0.1.0 · Go 1.24 · MIT · macOS / Linux",
+      "en": "0.1.0 · Go 1.24 · MIT · macOS / Linux"
+    }
+  }
 }
